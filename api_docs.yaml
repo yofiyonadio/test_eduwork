@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: TEST-EDUROWK.yaml
+  description: ''
+  contact: {}
+  version: '1.0'
+servers:
+- url: 'http://localhost:5500'
+paths:
+  /v1/tugas:
+    get:
+      tags:
+      - Task
+      summary: GET Tugas
+      description: ''
+      operationId: GETTugas
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+      - Task
+      summary: POST Tugas
+      description: ''
+      operationId: POSTTugas
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/POSTTugasRequest'
+              - example:
+                  judul: test
+                  deskripsi: testttttt
+                  selesai: true
+            example:
+              judul: test
+              deskripsi: testttttt
+              selesai: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+  /v1/tasks/5:
+    get:
+      tags:
+      - Task
+      summary: GET Task by ID
+      description: ''
+      operationId: GETTaskbyID
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+  /v1/tasks/1:
+    patch:
+      tags:
+      - Task
+      summary: PATCH Task
+      description: ''
+      operationId: PATCHTask
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PATCHTaskRequest'
+              - example:
+                  judul: zzz
+                  deskripsi: testttttt
+                  selesai: false
+            example:
+              judul: zzz
+              deskripsi: testttttt
+              selesai: false
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+  /v1/tasks/2:
+    delete:
+      tags:
+      - Task
+      summary: Delete Task
+      description: ''
+      operationId: DeleteTask
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+  /v1:
+    get:
+      summary: Base
+      description: ''
+      operationId: Base
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    POSTTugasRequest:
+      title: POSTTugasRequest
+      required:
+      - judul
+      - deskripsi
+      - selesai
+      type: object
+      properties:
+        judul:
+          type: string
+        deskripsi:
+          type: string
+        selesai:
+          type: boolean
+      example:
+        judul: test
+        deskripsi: testttttt
+        selesai: true
+    PATCHTaskRequest:
+      title: PATCHTaskRequest
+      required:
+      - judul
+      - deskripsi
+      - selesai
+      type: object
+      properties:
+        judul:
+          type: string
+        deskripsi:
+          type: string
+        selesai:
+          type: boolean
+      example:
+        judul: zzz
+        deskripsi: testttttt
+        selesai: false
+tags:
+- name: Task
+  description: ''

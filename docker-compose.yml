@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: node_backlien
+    image: node_backlien
+    restart: "no"
+    ports:
+      - "5500:5500"
+    networks:
+      - mysql_network
+    depends_on:
+      db:
+        condition: service_healthy
+    command: bash -c "npx gulp docker_env && npm run migrate && npm run dev"
+  db:
+    container_name: mysql
+    image: mysql:8.0
+    healthcheck:
+      test: "exit 0"
+    restart: "no"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql_network
+networks:
+  mysql_network:
+    name: mysql_network
